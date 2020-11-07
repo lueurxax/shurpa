@@ -1,0 +1,29 @@
+@startuml
+
+actor User
+boundary API
+boundary Core
+boundary Plugin1
+boundary Plugin2
+
+User -> API: requested playlist link
+activate API
+API -> Core: match plugin by link
+activate Core
+Core -> Plugin1: resolve songs list by link
+activate Plugin1
+Plugin1 --> Core: slice of song info
+deactivate Plugin1
+Core -> Plugin2: search songs in requested services
+activate Plugin2
+Plugin2 --> Core: response link
+deactivate Plugin2
+Core -> Plugin2: make playlist from songs list
+activate Plugin2
+Plugin2 --> Core: response playlist link
+deactivate Plugin2
+Core --> API: response playlist link
+deactivate Core
+API --> User: response playlist link
+deactivate API
+@enduml

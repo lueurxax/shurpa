@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  foundationdb:
+    image: foundationdb/foundationdb
+    ports:
+    - "4500:4500"
