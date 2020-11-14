@@ -23,6 +23,6 @@ func (p *plugin) Host() string {
 }
 
 // NewPlugin construct new plugin
-func NewPlugin(id string, host string) Plugin {
-	return &plugin{id: id, host: host, SongFinder: NewFinder(), LinkResolver: NewResolver()}
+func NewPlugin(id string, host string, client APIClient) Plugin {
+	return &plugin{id: id, host: host, SongFinder: NewFinder(), LinkResolver: NewResolver(client)}
 }
