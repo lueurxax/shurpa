@@ -7,6 +7,10 @@ import (
 )
 
 func Test_finder_SearchSong(t *testing.T) {
+	if testing.Short() {
+		t.Skip()
+	}
+
 	client := mustNewClient()
 
 	type fields struct {

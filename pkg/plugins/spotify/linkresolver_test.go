@@ -8,6 +8,10 @@ import (
 )
 
 func Test_resolver_ResolveLink(t *testing.T) {
+	if testing.Short() {
+		t.Skip()
+	}
+
 	client := mustNewClient()
 	type fields struct {
 		client *spotify.Client
