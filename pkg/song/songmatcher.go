@@ -2,6 +2,7 @@ package song
 
 import "github.com/lueurxax/shurpa/models"
 
+// Matcher match song in source service with song in destination service by link
 type Matcher interface {
 	MatchSong(link string, destination string) (response string, err error)
 }
@@ -40,6 +41,7 @@ func (m *matcher) MatchSong(link string, destination string) (string, error) {
 	return m.plugins[destination].SearchSong(&info)
 }
 
+// NewMatcher construct new Matcher interface
 func NewMatcher(pluginMatcher pluginMatcher) Matcher {
 	return &matcher{pluginMatcher: pluginMatcher}
 }
