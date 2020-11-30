@@ -9,10 +9,13 @@ import (
 
 	"github.com/kelseyhightower/envconfig"
 	"github.com/stretchr/testify/require"
+
+	"github.com/lueurxax/shurpa/models"
 )
 
 const (
 	getInfoSuccess = "get song info success"
+	getLinkSuccess = "get song link success"
 )
 
 func Test_client_GetSongInfo(t *testing.T) {
@@ -31,5 +34,17 @@ func Test_client_GetSongInfo(t *testing.T) {
 		got, err := c.GetSongInfo(context.Background(), "1524378510")
 		require.NoError(t, err)
 		log.Print(got[0].Attributes.Name)
+	})
+	t.Run(getLinkSuccess, func(t *testing.T) {
+		c := NewClient(j)
+		require.NoError(t, c.Init())
+
+		got, err := c.SearchSong(context.Background(), &models.SongInfo{
+			Name:   "Breath",
+			Album:  "Shallow Bay: The Best of Breaking Benjamin (Deluxe Edition)",
+			Artist: "Breaking Benjamin",
+		})
+		require.NoError(t, err)
+		log.Print(got)
 	})
 }
